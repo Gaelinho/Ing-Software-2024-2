@@ -1,0 +1,25 @@
+
+Juego de Tenis
+
+García Aguilera Gael
+
+
+Reglas:
+ -  Mejor de 3 sets
+ -  Juegos con ventaja
+
+
+Entrada del programa:
+ -  Para la entrada de los nombres de los jugadores, se requiere únicamente que
+    no sea una cadena vacía.
+
+ -  Para la elección del jugador que hace una anotación, se debe indicar el
+    número relacionado con este y que se muestran en Terminal. Por ejemplo,
+    si los jugadores son Gael y Fernando, se mostrará:
+
+        Elige anotador:
+        1. Gael
+        2. Fernando
+
+    De esta forma, si se quiere que Gael anote, se indicará con un 1, y para que
+    Fernando sea el anotador, con el 2.
