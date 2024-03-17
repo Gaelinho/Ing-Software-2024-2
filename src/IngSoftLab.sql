@@ -33,7 +33,7 @@ CREATE TABLE `rentar` (
   `idRentar` int NOT NULL AUTO_INCREMENT,
   `idUsuario` int NOT NULL,
   `idPelicula` int NOT NULL,
-  `fecha_renta` datetime NOT NULL,
+  `fecha_renta` date NOT NULL,
   `dias_de_renta` int DEFAULT '5',
   `estatus` tinyint DEFAULT '0',
   PRIMARY KEY (`idRentar`),
