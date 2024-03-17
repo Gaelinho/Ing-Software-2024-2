@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Usuario</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: yellow;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 250px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .flash-messages {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+        .flash-message {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        function showMessage(message) {
+            alert(message);
+        }
+
+        // Call showMessage function for each flashed message
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
+</head>
+<h1>
+    CloneBuster
+</h1>
+<body>
+    <h2>Eliminar un Usuario</h2>
+    <form method="post">
+    <label for="id">Ingrese el id del usuario a eliminar:</label>
+    <input type="number" name="id" id="id" min="1" required/><br>
+
+    <button class="button" type="submit">Eliminar usuario</button>
+    </form>
+
+    <br><br>
+
+    <button class="button" onclick="window.location.href='/'">Menú Inicial</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="window.location.href='/usuario'">Menú Usuario</button>
+</body>
+</html>

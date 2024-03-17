@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Usuario</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: yellow;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="checkbox"] {
+            width: 250px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .flash-messages {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+        .flash-message {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
+</head>
+<h1>
+    CloneBuster
+</h1>
+<body>
+    <h2>Actualizar Usuario</h2>
+    <form method="post">
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" value="{{ usuario.nombre }}" required/>
+    <a class="red-text"> *</a><br>
+
+    <label for="apPat">Apellido paterno:</label>
+    <input type="text" name="apPat" id="apPat" value="{{ usuario.apPat }}" required/>
+    <a class="red-text"> *</a><br>
+
+    <label for="apMat">Apellido materno:</label>
+    <input type="text" name="apMat" id="apMat" value="{{ usuario.apMat }}"/><br>
+
+    <label for="password">Ingrese el password:</label>
+    <input type="password" name="password" id="password" value="{{ usuario.password }}" required/>
+    <a class="red-text"> *</a><br>
+
+    <label for="email">e-mail:</label>
+    <input type="email" name="email" id="email" value="{{ usuario.email }}"/><br>
+
+    <input type="checkbox" id="superUser" name="superUser" {% if usuario.superUser %}checked{% endif %}>
+    <label for="superUser">Super Usuario </label><br><br>
+
+    <a class="red-text">* Campos obligatorios </a><br><br>
+
+    <button class="button" type="submit">Actualizar usuario</button>
+    </form>
+
+    <br><br>
+
+    <button class="button" onclick="window.location.href='/'">Menú Inicial</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="window.location.href='/usuario'">Menú Usuario</button>
+</body>
+</html>

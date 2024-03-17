@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabla de Películas</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: yellow;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            width: 75%;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 2px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #888;
+        }
+    </style>
+</head>
+<h1>
+    CloneBuster
+</h1>
+<body>
+<h2>Tabla de Películas</h2>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Género</th>
+                <th>Duración</th>
+                <th>Inventario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in peliculas %}
+                <tr>
+                    <td>{{ p.idPelicula }}</td>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.genero if p.genero != None else '-' }}</td>
+                    <td>{{ p.duracion if p.duracion != None else '-' }}</td>
+                    <td>{{ p.inventario }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <button class="button" onclick="window.location.href='/'">Menú Inicial</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="window.location.href='/pelicula'">Menú Película</button>
+</body>
+</html>

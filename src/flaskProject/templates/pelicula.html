@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="URF-8">
+    <title>Usuarios</title>
+    <style>
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: yellow;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        body {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        .flash-messages {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+        .flash-message {
+            margin-bottom: 5px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
+</head>
+<h1>
+    CloneBuster
+</h1>
+<body>
+<h2>Películas</h2>
+    <br><br>
+    <button class="button" onclick="window.location.href='/pelicula/agregar'">Agregar película</button>
+    <br><br>
+    <button class="button" onclick="window.location.href='/pelicula/actualizar'">Actualizar información de película</button>
+    <br><br>
+    <button class="button" onclick="window.location.href='/pelicula/eliminar'">Eliminar película</button>
+    <br><br>
+    <button class="button" onclick="window.location.href='/pelicula/ver_peliculas'">Ver todas las películas</button>
+
+    <br><br><br><br>
+
+    <button class="button" onclick="window.location.href='/'">Menú Inicial</button>
+</body>
+</html>

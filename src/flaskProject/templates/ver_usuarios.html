@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabla de Usuarios</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: yellow;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            width: 75%;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 2px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #888;
+        }
+    </style>
+</head>
+<h1>
+    CloneBuster
+</h1>
+<body>
+<h2>Tabla de Usuarios</h2>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>e-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+                <tr>
+                    <td>{{ u.idUsuario }}</td>
+                    <td>{{ u.nombre }}</td>
+                    <td>{{ u.apPat }}</td>
+                    <td>{{ u.apMat if u.apMat != None else '-' }}</td>
+                    <td>{{ u.email if u.email != None else '-' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <button class="button" onclick="window.location.href='/'">Menú Inicial</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" onclick="window.location.href='/usuario'">Menú Usuario</button>
+</body>
+</html>
