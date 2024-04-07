@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
-import "./UsuarioFormActualizar.css";
+import "./UsuarioForm.css";
 
 const UsuarioFormActualizar = (props) => {
-    const [idUsuario, setIdUsuario] = useState(0);
+    const [idUsuario, setIdUsuario] = useState("");
     const [nombre, setNombre] = useState("");
     const [apPat, setApPat] = useState("");
     const [apMat, setApMat] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [superUser, setSuperUser] = useState(false);
+
+    const [idActualizar,setIdActualizar] = useState("");
 
     const setIdUsuarioHandler = (event) => {
         setIdUsuario(event.target.value);
@@ -18,18 +20,20 @@ const UsuarioFormActualizar = (props) => {
     const buscarHandler = (event) => {
         event.preventDefault();
 
+        setIdActualizar(idUsuario);
         setIdUsuario(event.target.value);
         const indice = props.usuarios.findIndex(usuario => usuario.idUsuario === parseInt(idUsuario));
         const user = props.usuarios[indice];
         if (!user){
             alert("ID no encontrado");
-            setIdUsuario(0);
+            setIdUsuario("");
             setNombre("");
             setApPat("");
             setApMat("");
             setPassword("");
             setEmail("");
             setSuperUser(false);
+            setIdActualizar("");
             return;
         }
         setIdUsuario(user.idUsuario);
@@ -65,11 +69,21 @@ const UsuarioFormActualizar = (props) => {
         setSuperUser(event.target.checked);
     };
 
+    const setIdActualizarHandler = (event) => {
+        setIdActualizar(event.target.checked);
+    };
+
     const submitHandler = (event) => {
         event.preventDefault();
 
+        const indice = props.usuarios.findIndex(usuario => usuario.idUsuario === parseInt(idUsuario));
+        if (indice === -1) {
+            alert("ID no elegido");
+            return;
+        }
+
         const usuario = {
-            idUsuario: idUsuario,
+            idUsuario: parseInt(idActualizar),
             nombre: nombre,
             apPat: apPat,
             apMat: apMat,
@@ -78,39 +92,38 @@ const UsuarioFormActualizar = (props) => {
             superUser: superUser,
         };
 
-        if (
-            nombre === "" ||
-            apPat === "" ||
-            password === ""
-        ) {
-            alert("Campos vacíos!!");
-            return;
-        }
-
         props.actualizarUsuario(usuario);
-        setIdUsuario(0);
+        setIdUsuario("");
         setNombre("");
         setApPat("");
         setApMat("");
         setPassword("");
         setEmail("");
         setSuperUser(false);
+        setIdActualizar("");
     };
 
     return (
         <form onSubmit={submitHandler}>
 
         <label>ID: </label>
-        <input type="number" value={idUsuario} min="0" onChange={setIdUsuarioHandler}/>
+        <input type="number" value={idUsuario} min="1" onChange={setIdUsuarioHandler}/>
         <button className="button" onClick={buscarHandler}>Buscar</button>
+        <br />
+        <br />
+
+        <a>ID del Usuario a Actualizar: {idActualizar}</a>
+        <br />
         <br />
 
         <label>Nombre: </label>
-        <input type="text" value={nombre} onChange={setNombreHandler}/>
+        <input type="text" value={nombre} onChange={setNombreHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>Apellido Paterno: </label>
-        <input type="text" value={apPat} onChange={setApPatHandler}/>
+        <input type="text" value={apPat} onChange={setApPatHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>Apellido Materno: </label>
@@ -118,7 +131,8 @@ const UsuarioFormActualizar = (props) => {
         <br />
 
         <label>Contraseña: </label>
-        <input type="password" value={password} onChange={setPasswordHandler} />
+        <input type="password" value={password} onChange={setPasswordHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>email: </label>
@@ -126,7 +140,7 @@ const UsuarioFormActualizar = (props) => {
         <br />
 
         <label>Super User: </label>
-        <input type="checkbox" checked={superUser} onChange={setSuperUserHandler} />
+        <input type="checkbox" checked={superUser} onChange={setSuperUserHandler}/>
         <br />
 
         <button className="button" type="submit">Actualizar usuario</button>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./UsuarioFormAgregar.css";
+import "./UsuarioForm.css";
 
 const UsuarioFormAgregar = (props) => {
     const [nombre, setNombre] = useState("");
@@ -46,15 +46,6 @@ const UsuarioFormAgregar = (props) => {
             superUser: superUser,
         };
 
-        if (
-            nombre === "" ||
-            apPat === "" ||
-            password === ""
-        ) {
-            alert("Campos vacíos!!");
-            return;
-        }
-
         props.guardarUsuario(usuario);
         setNombre("");
         setApPat("");
@@ -67,11 +58,13 @@ const UsuarioFormAgregar = (props) => {
     return (
         <form onSubmit={submitHandler}>
         <label>Nombre: </label>
-        <input type="text" value={nombre} onChange={setNombreHandler}/>
+        <input type="text" value={nombre} onChange={setNombreHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>Apellido Paterno: </label>
-        <input type="text" value={apPat} onChange={setApPatHandler}/>
+        <input type="text" value={apPat} onChange={setApPatHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>Apellido Materno: </label>
@@ -79,7 +72,8 @@ const UsuarioFormAgregar = (props) => {
         <br />
 
         <label>Contraseña: </label>
-        <input type="password" value={password} onChange={setPasswordHandler} />
+        <input type="password" value={password} onChange={setPasswordHandler} required/>
+        <a class="red-text"> *</a>
         <br />
 
         <label>email: </label>

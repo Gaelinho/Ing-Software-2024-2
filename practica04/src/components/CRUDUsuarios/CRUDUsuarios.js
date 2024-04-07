@@ -7,6 +7,10 @@ import UsuarioFormActualizar from "./UsuarioFormActualizar";
 const CRUDUsuarios = (props) => {
 
     const guardarUsuario = (usuario) => {
+        if(props.usuarios.find(u => u.email === usuario.email)){
+            alert("Correo ya registrado");
+            return;
+        }
         if (props.usuarios.length === 0) {
             usuario.idUsuario = 1;
         } else {
@@ -14,9 +18,16 @@ const CRUDUsuarios = (props) => {
         }
         const nuevosUsuarios = [...props.usuarios, usuario];
         props.setUsuarios(nuevosUsuarios);
+        alert("Usuario agregado con ID: " + usuario.idUsuario);
     }
 
     const actualizarUsuario = (usuarioAc) => {
+        if(props.usuarios.find(u => u.email === usuarioAc.email && u.idUsuario !== usuarioAc.idUsuario)){
+            if (usuarioAc.email !== "") {
+                alert("Correo ya registrado");
+                return;
+            }
+        }
         const nuevosUsuarios = [...props.usuarios];
         const indice = nuevosUsuarios.findIndex(usuario => usuario.idUsuario === usuarioAc.idUsuario);
         nuevosUsuarios[indice] = usuarioAc;
@@ -51,8 +62,8 @@ const CRUDUsuarios = (props) => {
                             <td>{usuario.idUsuario}</td>
                             <td>{usuario.nombre}</td>
                             <td>{usuario.apPat}</td>
-                            <td>{usuario.apMat}</td>
-                            <td>{usuario.email}</td>
+                            <td>{usuario.apMat ? usuario.apMat : "-"}</td>
+                            <td>{usuario.email ? usuario.email : "-"}</td>
                             <button class="button" onClick={() => eliminarUsuario(usuario.idUsuario)}>Eliminar</button>
                         </tr>
                     ))}
