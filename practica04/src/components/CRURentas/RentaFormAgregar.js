@@ -67,7 +67,7 @@ const RentaFormAgregar = (props) => {
         <br />
 
         <label>Fecha Renta: </label>
-        <input type="date" value={fechaRenta} onChange={setFechaRentaHandler} required/>
+        <input type="date" value={fechaRenta} max={new Date().toISOString().split("T")[0]} onChange={setFechaRentaHandler} required/>
         <a class="red-text"> *</a>
         <br />
 
