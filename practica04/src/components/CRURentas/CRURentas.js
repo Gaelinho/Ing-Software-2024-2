@@ -7,14 +7,6 @@ import RentaFormActualizar from "./RentaFormActualizar";
 const CRUDRentas = (props) => {
 
     const guardarRenta = (renta) => {
-        if(!props.usuarios.find(u => u.idUsuario === renta.idUsuario)){
-            alert("ID de Usuario no encontrado");
-            return;
-        }
-        if(!props.peliculas.find(p => p.idPelicula === renta.idPelicula)){
-            alert("ID de Pelicula no encontrado");
-            return;
-        }
         if (props.rentas.length === 0) {
             renta.idRentar = 1;
         } else {
@@ -22,6 +14,7 @@ const CRUDRentas = (props) => {
         }
         const nuevasRentas = [...props.rentas, renta];
         props.setRentas(nuevasRentas);
+        alert("Renta agregada con ID: " + renta.idRentar);
     }
 
     const actualizarRenta = (rentaAc) => {
@@ -29,13 +22,7 @@ const CRUDRentas = (props) => {
         const indice = nuevasRentas.findIndex(renta => renta.idRentar === rentaAc.idRentar);
         nuevasRentas[indice].estatus = rentaAc.estatus;
         props.setRentas(nuevasRentas);
-    }
-
-    const eliminarRenta = (id) => {
-        const nuevasRentas = [...props.rentas];
-        const indice = nuevasRentas.findIndex(renta => renta.idRentar === id);
-        nuevasRentas.splice(indice, 1);
-        props.setRentas(nuevasRentas);
+        alert("Renta actualizada");
     }
 
     return (
@@ -63,7 +50,6 @@ const CRUDRentas = (props) => {
                             <td>{renta.fechaRenta}</td>
                             <td>{renta.diasRenta ? renta.diasRenta : "-"}</td>
                             <td>{renta.estatus ? "Devuelta" : "No Devuelta"}</td>
-
                         </tr>
                     ))}
                 </tbody>

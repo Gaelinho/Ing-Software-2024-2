@@ -32,6 +32,7 @@ const CRUDUsuarios = (props) => {
         const indice = nuevosUsuarios.findIndex(usuario => usuario.idUsuario === usuarioAc.idUsuario);
         nuevosUsuarios[indice] = usuarioAc;
         props.setUsuarios(nuevosUsuarios);
+        alert("Usuario actualizado");
     }
 
     const eliminarUsuario = (id) => {
@@ -39,6 +40,7 @@ const CRUDUsuarios = (props) => {
         const indice = nuevosUsuarios.findIndex(usuario => usuario.idUsuario === id);
         nuevosUsuarios.splice(indice, 1);
         props.setUsuarios(nuevosUsuarios);
+        alert("Usuario con ID " + id + " eliminado");
     }
 
     return (

@@ -14,6 +14,7 @@ const CRUDPeliculas = (props) => {
         }
         const nuevasPeliculas = [...props.peliculas, pelicula];
         props.setPeliculas(nuevasPeliculas);
+        alert("Película agregada con ID: " + pelicula.idPelicula);
     }
 
     const actualizarPelicula = (peliculaAc) => {
@@ -21,6 +22,7 @@ const CRUDPeliculas = (props) => {
         const indice = nuevasPeliculas.findIndex(pelicula => pelicula.idPelicula === peliculaAc.idPelicula);
         nuevasPeliculas[indice] = peliculaAc;
         props.setPeliculas(nuevasPeliculas);
+        alert("Película actualizada");
     }
 
     const eliminarPelicula = (id) => {
@@ -28,6 +30,7 @@ const CRUDPeliculas = (props) => {
         const indice = nuevasPeliculas.findIndex(pelicula => pelicula.idPelicula === id);
         nuevasPeliculas.splice(indice, 1);
         props.setPeliculas(nuevasPeliculas);
+        alert("Película con ID " + id + " eliminada");
     }
 
     return (
