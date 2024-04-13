@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CRUDUsuarios from './components/CRUDUsuarios/CRUDUsuarios';
 import CRUDPeliculas from './components/CRUDPeliculas/CRUDPeliculas';
 import CRURentas from './components/CRURentas/CRURentas';
+import Inicio from './Inicio';
 
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -26,31 +26,14 @@ function App() {
 
     return (
         <Router>
-            <div className="App">
-                <header className="App-header">
-                    <h1>CloneBuster</h1>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/usuarios">Usuarios</Link>
-                            </li>
-                            <li>
-                                <Link to="/peliculas">Películas</Link>
-                            </li>
-                            <li>
-                                <Link to="/rentas">Rentas</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </header>
                 <main>
                     <Routes>
+                        <Route path="/" element={<Inicio/>} />
                         <Route path="/usuarios" element={<CRUDUsuarios usuarios={usuarios} setUsuarios={setUsuarios}/>} />
                         <Route path="/peliculas" element={<CRUDPeliculas peliculas={peliculas} setPeliculas={setPeliculas}/>} />
                         <Route path="/rentas" element={<CRURentas rentas={rentas} setRentas={setRentas} usuarios={usuarios} peliculas={peliculas}/>} />
                     </Routes>
                 </main>
-            </div>
         </Router>
     );
 

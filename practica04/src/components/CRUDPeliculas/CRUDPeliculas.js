@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './CRUDPeliculas.css';
 
 import PeliculaFormAgregar from "./PeliculaFormAgregar";
@@ -36,6 +37,13 @@ const CRUDPeliculas = (props) => {
     return (
         <div>
             <h1>Películas</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Menú Inicial</Link>
+                    </li>
+                </ul>
+            </nav>
 
             <h2>Tabla de Películas</h2>
             <table>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './CRURentas.css';
 
 import RentaFormAgregar from "./RentaFormAgregar";
@@ -28,6 +29,13 @@ const CRUDRentas = (props) => {
     return (
         <div>
             <h1>Rentas</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Menú Inicial</Link>
+                    </li>
+                </ul>
+            </nav>
 
             <h2>Tabla de Rentas</h2>
             <table>
